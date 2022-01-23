@@ -138,6 +138,18 @@ input:focus {
 
 #lang-btn {
   right: 60px;
+  color: #ffffff;
+  background-color: #666666;
+  font-family: "Noto Sans SC";
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 2px;
+  border-radius: 4px;
+}
+
+.night-mode #lang-btn {
+  color: #222222;
+  background-color: #bbbbbb;
 }
 
 #description::first-letter {
