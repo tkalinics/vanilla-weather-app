@@ -10,13 +10,13 @@ let tempElement = document.querySelector("#main-temperature");
 let city = document.querySelector("input");
 
 let country = "";
+let lang = "en";
 let langState = true; // true for English, false for local language
 
 // display time
 function formatDay(timestamp) {
   let date = new Date(timestamp);
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  return days[date.getDay()];
+  return dictionary[lang].abbr[date.getDay()];
 }
 
 function formatDate(timestamp) {
@@ -31,18 +31,10 @@ function formatDate(timestamp) {
     minutes = `0${minutes}`;
   }
 
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ];
-
   let dateTimeElement = document.querySelector("#time");
-  dateTimeElement.innerHTML = `${days[date.getDay()]} ${hours}:${minutes}`;
+  dateTimeElement.innerHTML = `${
+    dictionary[lang].days[date.getDay()]
+  } ${hours}:${minutes}`;
 }
 
 // weather functions
@@ -103,7 +95,7 @@ function displayForecast(response) {
   let todayElement = document.querySelector(".forecast-day");
   todayElement.classList.add("today");
   let todayText = document.querySelector(".forecast-day-name");
-  todayText.innerHTML = "Today";
+  todayText.innerHTML = dictionary[lang].today;
 }
 
 function getForecast(coordinates) {
@@ -138,15 +130,8 @@ function displayTemp(response) {
   country = response.data.sys.country;
 }
 
-function getTemp(query, input, lang) {
+function getTemp(query, input) {
   let apiUrl = "";
-
-  console.log(lang);
-
-  if (lang === undefined) {
-    lang = "en";
-    langState = true;
-  }
 
   if (query === "name") {
     apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=${apiKey}&units=metric&lang=${lang}`;
@@ -274,6 +259,7 @@ function langToggle() {
     NO: "no",
     NL: "nl",
     OM: "ar",
+    PH: "tl",
     PL: "pl",
     PT: "pt",
     QA: "ar",
@@ -293,7 +279,7 @@ function langToggle() {
     YE: "ar",
   };
 
-  let lang = "en";
+  lang = "en";
 
   if (langState) {
     if (countryList[country]) {
@@ -301,11 +287,168 @@ function langToggle() {
     }
   }
 
-  getTemp("name", city.value, lang);
+  getTemp("name", city.value);
   langState = !langState;
 }
 
 let langButton = document.querySelector("#lang-btn");
 langButton.addEventListener("click", langToggle);
+
+// dictionary
+let dictionary = {
+  en: {
+    today: "Today",
+    days: [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
+    abbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+  },
+
+  cz: {
+    today: "Dnes",
+    days: [
+      "Neděle",
+      "Pondělí",
+      "Úterý",
+      "Středa",
+      "Čtvrtek",
+      "Pátek",
+      "Sobota",
+    ],
+    abbr: ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
+  },
+
+  el: {
+    today: "Σήμερα",
+    days: [
+      "Κυριακή",
+      "Δευτέρα",
+      "Τρίτη",
+      "Τετάρτη",
+      "Πέμπτη",
+      "Παρασκευή",
+      "Σάββατο",
+    ],
+    abbr: ["Κυρ.", "Δευ.", "Τρ.", "Τετ.", "Πέμ.", "Παρ.", "Σάβ."],
+  },
+
+  fi: {
+    today: "Tänään",
+    days: [
+      "Sunnuntai",
+      "Maanantai",
+      "Tiistai",
+      "Keskiviikko",
+      "Torstai",
+      "Perjantai",
+      "Lauantai",
+    ],
+    abbr: ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
+  },
+
+  hu: {
+    today: "Ma",
+    days: [
+      "Vasárnap",
+      "Hétfő",
+      "Kedd",
+      "Szerda",
+      "Csütörtök",
+      "Péntek",
+      "Szombat",
+    ],
+    abbr: ["Vas.", "H.", "K.", "Sze.", "Csüt.", "P.", "Szo."],
+  },
+
+  ja: {
+    today: "本日",
+    days: [
+      "日曜日",
+      "月曜日",
+      "火曜日",
+      "水曜日",
+      "木曜日",
+      "金曜日",
+      "土曜日",
+    ],
+    abbr: ["日", "月", "火", "水", "木", "金", "土"],
+  },
+
+  kr: {
+    today: "오늘",
+    days: [
+      "일요일",
+      "월요일",
+      "화요일",
+      "수요일",
+      "목요일",
+      "금요일",
+      "토요일",
+    ],
+    abbr: ["일", "월", "화", "수", "목", "금", "토"],
+  },
+
+  ru: {
+    today: "Сегодня",
+    days: [
+      "Воскресенье",
+      "Понедельник",
+      "Вторник",
+      "Среда",
+      "Четверг",
+      "Пятница",
+      "Суббота",
+    ],
+    abbr: ["Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."],
+  },
+
+  tl: {
+    today: "Ngayon",
+    days: [
+      "Linggo",
+      "Lunes",
+      "Martes",
+      "Miyerkules",
+      "Huwebes",
+      "Biyernes",
+      "Sabado",
+    ],
+    abbr: ["Lgo", "Lun", "Mar", "Miy", "Huw", "Biy", "Sab"],
+  },
+
+  ua: {
+    today: "Сьогодні",
+    days: [
+      "Неділя",
+      "Понеділок",
+      "Вівторок",
+      "Середа",
+      "Четвер",
+      "П’ятниця",
+      "Субота",
+    ],
+    abbr: ["Нд.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."],
+  },
+
+  vi: {
+    today: "Hôm nay",
+    days: [
+      "Chủ nhật",
+      "Thứ hai",
+      "Thứ ba",
+      "Thứ tư",
+      "Thứ năm",
+      "Thứ sáu",
+      "Thứ bảy",
+    ],
+    abbr: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+  },
+};
 
 getTemp("name", "Helsinki");
