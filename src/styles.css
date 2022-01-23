@@ -1,0 +1,150 @@
+body {
+  font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+  color: #333333;
+}
+
+.night-mode {
+  background-color: #222222; /* #15202b - blue */
+  color: #eeeeee;
+}
+
+a {
+  text-decoration: none;
+  color: #288fb4;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+input {
+  border: none;
+  outline: none;
+  height: 35px;
+  padding-left: 0;
+}
+
+input:focus {
+  border-bottom: 1px solid #cdcdcd;
+}
+
+.night-mode input {
+  background-color: #222222;
+  color: #eeeeee;
+}
+
+.weather-app-wrapper {
+  max-width: 650px;
+  margin: 20px auto;
+}
+
+.weather-app {
+  padding: 15px 20px;
+  border: 1px solid #cdcdcd;
+  border-radius: 10px;
+  position: relative;
+}
+
+.night-mode .weather-app {
+  box-shadow: 0 0.125rem 0.25rem rgba(255, 255, 255, 0.175) !important;
+}
+
+.current-city {
+  font-size: 28px;
+}
+
+.weather-icon {
+  width: 50px;
+  margin-left: -5px;
+}
+
+.weather-icon-day {
+  width: 35px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.units {
+  font-size: 12px;
+  position: relative;
+  top: -10px;
+}
+
+.selected-unit {
+  font-weight: bold;
+  color: inherit;
+  cursor: auto;
+}
+
+.selected-unit:hover {
+  color: inherit;
+}
+
+.weather-extras {
+  font-size: 14px;
+  color: #666666;
+}
+
+.night-mode .weather-extras {
+  color: #bbbbbb;
+}
+
+.days {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.today {
+  font-weight: bold;
+}
+
+.min {
+  color: #158fcc;
+  margin-right: 5px;
+}
+
+.max {
+  color: #f23557;
+  margin-left: 5px;
+}
+
+.button {
+  position: absolute;
+  color: #666666;
+  cursor: pointer;
+}
+
+.night-mode .button {
+  color: #bbbbbb;
+}
+
+.footer {
+  margin: 10px;
+  font-size: 14px;
+}
+
+#night-mode-btn {
+  right: 20px;
+}
+
+#geolocation-btn {
+  right: 40px;
+}
+
+#lang-btn {
+  right: 60px;
+}
+
+#description::first-letter {
+  text-transform: capitalize;
+}
+
+#main-temperature {
+  font-size: 42px;
+  height: 50px;
+}
