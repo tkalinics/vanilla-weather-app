@@ -128,6 +128,10 @@ input:focus {
   font-size: 14px;
 }
 
+.footer-subsection {
+  float: right;
+}
+
 #night-mode-btn {
   right: 20px;
 }
