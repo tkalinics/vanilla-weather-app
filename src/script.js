@@ -112,13 +112,19 @@ function displayTemp(response) {
     tempElement.innerHTML = Math.round((temperature * 9) / 5 + 32);
   }
 
-  let humidityElement = document.querySelector("#humidity");
-  let windElement = document.querySelector("#wind");
+  let humidityWord = document.querySelector("#humidity-word");
+  let humidityElement = document.querySelector("#humidity-value");
+  let windWord = document.querySelector("#wind-word");
+  let windElement = document.querySelector("#wind-value");
+  let windUnit = document.querySelector("#wind-unit");
   let descriptionElement = document.querySelector("#description");
   let icon = document.querySelector(".weather-icon");
 
+  humidityWord.innerHTML = dictionary[lang].humidity;
   humidityElement.innerHTML = response.data.main.humidity;
+  windWord.innerHTML = dictionary[lang].wind;
   windElement.innerHTML = Math.round(response.data.wind.speed);
+  windUnit.innerHTML = dictionary[lang].windUnit;
   descriptionElement.innerHTML = response.data.weather[0].description;
   icon.setAttribute("src", `assets/${response.data.weather[0].icon}.svg`);
 
@@ -128,6 +134,12 @@ function displayTemp(response) {
   getForecast(response.data.coord);
 
   country = response.data.sys.country;
+
+  if (countryList[country]) {
+    langButton.classList.remove("inactive");
+  } else {
+    langButton.classList.add("inactive");
+  }
 }
 
 function getTemp(query, input) {
@@ -222,63 +234,6 @@ nightModeButton.addEventListener("click", nightMode);
 
 // language toggle
 function langToggle() {
-  let countryList = {
-    AE: "ar",
-    AZ: "az",
-    BG: "bg",
-    BH: "ar",
-    BR: "pt_br",
-    CN: "zh_cn",
-    CZ: "cz",
-    DE: "de",
-    DZ: "ar",
-    EG: "ar",
-    ES: "es",
-    FI: "fi",
-    FR: "fr",
-    GR: "el",
-    HR: "hr",
-    HU: "hu",
-    ID: "id",
-    IL: "he",
-    IN: "hi",
-    IQ: "ar",
-    IR: "fa",
-    IT: "it",
-    JO: "ar",
-    JP: "ja",
-    KR: "kr",
-    KW: "ar",
-    LB: "ar",
-    LT: "lt",
-    LV: "la",
-    LY: "ar",
-    MA: "ar",
-    MK: "mk",
-    MR: "ar",
-    NO: "no",
-    NL: "nl",
-    OM: "ar",
-    PH: "tl",
-    PL: "pl",
-    PT: "pt",
-    QA: "ar",
-    RO: "ro",
-    RS: "sr",
-    RU: "ru",
-    SA: "ar",
-    SE: "se",
-    SI: "sl",
-    SK: "sk",
-    SY: "ar",
-    TH: "th",
-    TN: "ar",
-    TR: "tr",
-    UA: "ua",
-    VN: "vi",
-    YE: "ar",
-  };
-
   lang = "en";
 
   if (langState) {
@@ -295,6 +250,19 @@ let langButton = document.querySelector("#lang-btn");
 langButton.addEventListener("click", langToggle);
 
 // dictionary
+let countryList = {
+  CZ: "cz",
+  FI: "fi",
+  GR: "el",
+  HU: "hu",
+  JP: "ja",
+  KR: "kr",
+  PH: "tl",
+  RU: "ru",
+  UA: "ua",
+  VN: "vi",
+};
+
 let dictionary = {
   en: {
     today: "Today",
@@ -308,6 +276,9 @@ let dictionary = {
       "Saturday",
     ],
     abbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    humidity: "Humidity",
+    wind: "Wind",
+    windUnit: "km/h",
   },
 
   cz: {
@@ -322,6 +293,9 @@ let dictionary = {
       "Sobota",
     ],
     abbr: ["Ne", "Po", "Út", "St", "Čt", "Pá", "So"],
+    humidity: "Vlhkost",
+    wind: "Vítr",
+    windUnit: "km/h",
   },
 
   el: {
@@ -336,6 +310,9 @@ let dictionary = {
       "Σάββατο",
     ],
     abbr: ["Κυρ.", "Δευ.", "Τρ.", "Τετ.", "Πέμ.", "Παρ.", "Σάβ."],
+    humidity: "Υγρασία",
+    wind: "Ανεμος",
+    windUnit: "km/h",
   },
 
   fi: {
@@ -350,6 +327,9 @@ let dictionary = {
       "Lauantai",
     ],
     abbr: ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
+    humidity: "Kosteus",
+    wind: "Tuuli",
+    windUnit: "km/h",
   },
 
   hu: {
@@ -364,6 +344,9 @@ let dictionary = {
       "Szombat",
     ],
     abbr: ["Vas.", "H.", "K.", "Sze.", "Csüt.", "P.", "Szo."],
+    humidity: "Páratartalom",
+    wind: "Szél",
+    windUnit: "km/h",
   },
 
   ja: {
@@ -378,6 +361,9 @@ let dictionary = {
       "土曜日",
     ],
     abbr: ["日", "月", "火", "水", "木", "金", "土"],
+    humidity: "湿度",
+    wind: "風",
+    windUnit: "km/h",
   },
 
   kr: {
@@ -392,6 +378,9 @@ let dictionary = {
       "토요일",
     ],
     abbr: ["일", "월", "화", "수", "목", "금", "토"],
+    humidity: "습기",
+    wind: "바람",
+    windUnit: "km/h",
   },
 
   ru: {
@@ -406,6 +395,9 @@ let dictionary = {
       "Суббота",
     ],
     abbr: ["Вс.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."],
+    humidity: "Влажность",
+    wind: "Ветер",
+    windUnit: "км/ч",
   },
 
   tl: {
@@ -420,6 +412,9 @@ let dictionary = {
       "Sabado",
     ],
     abbr: ["Lgo", "Lun", "Mar", "Miy", "Huw", "Biy", "Sab"],
+    humidity: "Halumigmig",
+    wind: "Hangin",
+    windUnit: "km/h",
   },
 
   ua: {
@@ -434,6 +429,9 @@ let dictionary = {
       "Субота",
     ],
     abbr: ["Нд.", "Пн.", "Вт.", "Ср.", "Чт.", "Пт.", "Сб."],
+    humidity: "Вологість",
+    wind: "Вітер",
+    windUnit: "км/год",
   },
 
   vi: {
@@ -448,6 +446,9 @@ let dictionary = {
       "Thứ bảy",
     ],
     abbr: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"],
+    humidity: "Độ ẩm",
+    wind: "Gió",
+    windUnit: "km/h",
   },
 };
 

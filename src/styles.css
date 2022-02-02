@@ -147,6 +147,11 @@ input:focus {
   border-radius: 4px;
 }
 
+#lang-btn.inactive {
+  opacity: 0.2;
+  cursor: default;
+}
+
 .night-mode #lang-btn {
   color: #222222;
   background-color: #bbbbbb;
