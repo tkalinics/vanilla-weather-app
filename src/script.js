@@ -223,14 +223,18 @@ geoButton.addEventListener("click", function () {
 
 // night mode
 function nightMode() {
-  let body = document.querySelector("body");
-  body.classList.toggle("night-mode");
+  document.body.classList.toggle("night-mode");
   nightModeButton.classList.toggle("far");
   nightModeButton.classList.toggle("fas");
 }
 
 let nightModeButton = document.querySelector("#night-mode-btn");
 nightModeButton.addEventListener("click", nightMode);
+
+const prefersNightMode = window.matchMedia("(prefers-color-scheme: dark)");
+if (prefersNightMode.matches) {
+  nightMode();
+}
 
 // language toggle
 function langToggle() {

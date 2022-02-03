@@ -1,11 +1,16 @@
 body {
+  --color-bkg: #ffffff;
+  --color-prim: #333333;
+  --color-sec: #666666;
   font-family: "Ubuntu", Arial, Helvetica, sans-serif;
-  color: #333333;
+  background-color: var(--color-bkg);
+  color: var(--color-prim);
 }
 
-.night-mode {
-  background-color: #222222; /* #15202b - blue */
-  color: #eeeeee;
+body.night-mode {
+  --color-bkg: #222222;
+  --color-prim: #eeeeee;
+  --color-sec: #bbbbbb;
 }
 
 a {
@@ -23,6 +28,8 @@ li {
 }
 
 input {
+  background-color: var(--color-bkg);
+  color: var(--color-prim);
   border: none;
   outline: none;
   height: 35px;
@@ -31,11 +38,6 @@ input {
 
 input:focus {
   border-bottom: 1px solid #cdcdcd;
-}
-
-.night-mode input {
-  background-color: #222222;
-  color: #eeeeee;
 }
 
 .weather-app-wrapper {
@@ -87,11 +89,7 @@ input:focus {
 
 .weather-extras {
   font-size: 14px;
-  color: #666666;
-}
-
-.night-mode .weather-extras {
-  color: #bbbbbb;
+  color: var(--color-sec);
 }
 
 .days {
@@ -115,12 +113,8 @@ input:focus {
 
 .button {
   position: absolute;
-  color: #666666;
+  color: var(--color-sec);
   cursor: pointer;
-}
-
-.night-mode .button {
-  color: #bbbbbb;
 }
 
 .footer {
@@ -142,8 +136,8 @@ input:focus {
 
 #lang-btn {
   right: 60px;
-  color: #ffffff;
-  background-color: #666666;
+  color: var(--color-bkg);
+  background-color: var(--color-sec);
   font-family: "Noto Sans SC";
   font-size: 10px;
   font-weight: bold;
@@ -154,11 +148,6 @@ input:focus {
 #lang-btn.inactive {
   opacity: 0.2;
   cursor: default;
-}
-
-.night-mode #lang-btn {
-  color: #222222;
-  background-color: #bbbbbb;
 }
 
 #description::first-letter {
