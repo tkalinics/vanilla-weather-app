@@ -40,8 +40,8 @@
           <li id="time">Monday 00:00</li>
           <li id="description">Sunny</li>
         </ul>
-        <div class="row">
-          <div class="col-6">
+        <div class="row row-cols-1 row-cols-sm-2">
+          <div class="col">
             <img
               src="assets/01d.svg"
               alt=""
@@ -53,7 +53,7 @@
               <a href="#" id="fahrenheit">°F</a>
             </span>
           </div>
-          <div class="col-6">
+          <div class="col">
             <ul class="weather-extras">
               <li><span id="humidity-word">Humidity</span>: <span id="humidity-value">90</span>%</li>
               <li><span id="wind-word">Wind</span>: <span id="wind-value">18</span> <span id="wind-unit">km/h</span></li>
@@ -61,10 +61,11 @@
           </div>
         </div>
         <hr />
-        <div class="row days" id="forecast"></div>
+        <div class="row row-cols-3 row-cols-md-6 gy-2 gy-md-0 days" id="forecast"></div>
       </div>
       <div class="footer">
         <a href="https://github.com/tkalinics/vanilla-weather-app">Open-source code</a> by Tamás Kalinics
+        <br class="d-sm-block d-md-none">
         <span class="footer-subsection">
           <a href="https://www.iconfinder.com/iconsets/weather-888">Weather icons</a> by <a href="https://www.iconfinder.com/adri_creative">Adri Ansyah</a> / <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>
         </span> 

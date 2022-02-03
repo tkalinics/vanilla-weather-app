@@ -33,6 +33,7 @@ input {
   border: none;
   outline: none;
   height: 35px;
+  max-width: 70%;
   padding-left: 0;
 }
 
@@ -103,12 +104,22 @@ input:focus {
 
 .min {
   color: #158fcc;
-  margin-right: 5px;
+  margin-right: 2px;
 }
 
 .max {
   color: #f23557;
-  margin-left: 5px;
+  margin-left: 2px;
+}
+
+@media (min-width: 375px) {
+  .min {
+    margin-right: 5px;
+  }
+
+  .max {
+    margin-left: 5px;
+  }
 }
 
 .button {
@@ -120,10 +131,17 @@ input:focus {
 .footer {
   margin: 10px;
   font-size: 14px;
+  text-align: center;
 }
 
-.footer-subsection {
-  float: right;
+@media (min-width: 760px) {
+  .footer {
+    text-align: left;
+  }
+
+  .footer-subsection {
+    float: right;
+  }
 }
 
 #night-mode-btn {
